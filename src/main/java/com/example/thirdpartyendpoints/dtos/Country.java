@@ -1,4 +1,4 @@
-package com.example.thirdpartyendpoints;
+package com.example.thirdpartyendpoints.dtos;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,10 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-class Gender {
-    String gender;
-    String name;
-    int count;
+public class Country {
+    String country_id;
     double probability;
 }
-

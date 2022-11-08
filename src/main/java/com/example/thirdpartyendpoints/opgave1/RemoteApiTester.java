@@ -1,4 +1,4 @@
-package com.example.thirdpartyendpoints;
+package com.example.thirdpartyendpoints.opgave1;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
@@ -61,12 +61,12 @@ public class RemoteApiTester implements CommandLineRunner {
         System.out.println(randoms.stream().collect(Collectors.joining(",")));
     }
 
-    Mono<Gender> getGenderForName(String name) {
+    Mono<Gender1> getGenderForName(String name) {
         WebClient client = WebClient.create();
-        Mono<Gender> gender = client.get()
+        Mono<Gender1> gender = client.get()
                 .uri("https://api.genderize.io?name="+name)
                 .retrieve()
-                .bodyToMono(Gender.class);
+                .bodyToMono(Gender1.class);
         return gender;
     }
 
@@ -75,7 +75,7 @@ public class RemoteApiTester implements CommandLineRunner {
 
     public void getGendersBlocking() {
         long start = System.currentTimeMillis();
-        List<Gender> genders = names.stream().map(name -> getGenderForName(name).block()).collect(Collectors.toList());
+        List<Gender1> genders = names.stream().map(name -> getGenderForName(name).block()).collect(Collectors.toList());
         long end = System.currentTimeMillis();
         System.out.println("Time for six external requests, BLOCKING: "+ (end-start));
     }
@@ -83,8 +83,8 @@ public class RemoteApiTester implements CommandLineRunner {
     public void getGendersNonBlocking() {
         long start = System.currentTimeMillis();
         var genders = names.stream().map(name -> getGenderForName(name)).collect(Collectors.toList());
-        Flux<Gender> flux = Flux.merge(Flux.concat(genders));
-        List<Gender> res = flux.collectList().block();
+        Flux<Gender1> flux = Flux.merge(Flux.concat(genders));
+        List<Gender1> res = flux.collectList().block();
         long end = System.currentTimeMillis();
         System.out.println("Time for six external requests, BLOCKING: "+ (end-start));
     }
@@ -93,13 +93,13 @@ public class RemoteApiTester implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //System.out.println(callSlowEndpoint().toString());
-        String randomStr = callSlowEndpoint().block();
+      /*  String randomStr = callSlowEndpoint().block();
         System.out.println(randomStr);
         callSlowEndpointBlocking();
         callSlowEndpointNonBlocking();
         System.out.println(getGenderForName("Güler").toString());
         getGendersBlocking();
-        getGendersNonBlocking();
+        getGendersNonBlocking();*/
 
     }
 }

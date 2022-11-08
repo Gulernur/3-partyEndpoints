@@ -1,4 +1,4 @@
-package com.example.thirdpartyendpoints;
+package com.example.thirdpartyendpoints.opgave1;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Controller;
